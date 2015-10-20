@@ -1,0 +1,15 @@
+Input:
+
+Grid 3x3  X(0-2) Y(0-2)
+turn based  (circle - cross)
+
+every move has a count,  even numbers are for cross,  uneven numbers for circles
+
+The assignment of either circle or cross is dependant on the count being even or not
+
+possibilities of a win:
+
+0,0 0,1 0,2
+0,2 0,1 0,0
+0,0 1,0 2,0
+2,0 1,0 0,0
