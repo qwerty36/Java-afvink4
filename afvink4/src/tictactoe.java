@@ -35,6 +35,7 @@ public class tictactoe extends JFrame implements ActionListener {
     private static String imagePath, seperator = "/"; // Seperator forward slash zowel voor Unix als Windows geschikt
     private static ImageIcon leeg, kruisje, rondje, vraagteken;  //images
     private static JLabel messageLabel, headerLabel;  //labels met informatieve teksten
+    private static int turn = 1;
 
     /**
      * Applicatie: main method, instantiering van frame (deze class) en
@@ -138,11 +139,15 @@ public class tictactoe extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent event) {
 
-        /**
-         * Code om events af te vangen en te reageren Tip werk met aanroep van
-         * methodes en neem niet alle code in deze methode op
-         */
         Object buttonPressed = event.getSource();
+        JButton b = (JButton) buttonPressed;
+        if ((turn % 2) == 0)
+            b.setIcon(kruisje);
+        else
+            b.setIcon(rondje);
+        b.setEnabled(false);
+
+
         /*
          * Als voorbeeld is hier opgenomen de boolean expressie
          * om te achterhalen of het vakje linksboven is aangeklikt
@@ -150,46 +155,32 @@ public class tictactoe extends JFrame implements ActionListener {
          * een if structuur om een kruisje danwel een rondje op de
          * button te plaatsen
          */
-        if (buttonPressed == button[0][0]) {
-            System.out.println("0,0");
-            int a = 1;
+        //System.out.println(buttonPressed == button[0][0]);
+        turn++;
+        if (turn == 10) {
+            JOptionPane.showMessageDialog(panel, "Balen, beiden waren jullie matig");
         }
-        if (buttonPressed == button[0][1]) {
-            System.out.println("0,1");
-            int a = 2;
-        }
-        if (buttonPressed == button[0][2]) {
-            System.out.println("0,2");
-            int a = 3;
-        }
-        if (buttonPressed == button[1][0]) {
-            System.out.println("1,0");
-            int a = 4;
-        }
-        if (buttonPressed == button[1][1]) {
-            System.out.println("1,1");
-            int a = 5;
-        }
-        if (buttonPressed == button[1][2]) {
-            System.out.println("1,2");
-            int a = 6;
-        }
-        if (buttonPressed == button[2][0]) {
-            System.out.println("2,0");
-            int a = 7;
-        }
-        if (buttonPressed == button[2][1]) {
-            System.out.println("2,1");
-            int a = 8;
-        }
-        if (buttonPressed == button[2][2]) {
-            System.out.println("2,2");
-            int a = 9;
-        }
+        check();
+        if ((turn % 2) == 0)
+            message("Kruisje is aan de beurt");
+        else
+            message("Rondje is aan de beurt");
+    }
 
-
-        //System.out.println(buttonPressed==button[0][1]);
-        //System.out.println(buttonPressed);
-
+    public void check() {
+        if (button[0][0].getIcon() == button[0][1].getIcon() && button[0][1].getIcon() == button[0][2].getIcon() && button[0][0].getIcon() != leeg ||
+                button[1][0].getIcon() == button[1][1].getIcon() && button[1][1].getIcon() == button[1][2].getIcon() && button[1][0].getIcon() != leeg ||
+                button[2][0].getIcon() == button[2][1].getIcon() && button[2][1].getIcon() == button[2][2].getIcon() && button[2][0].getIcon() != leeg ||
+                button[0][0].getIcon() == button[1][0].getIcon() && button[1][0].getIcon() == button[2][0].getIcon() && button[0][0].getIcon() != leeg ||
+                button[0][1].getIcon() == button[1][1].getIcon() && button[1][1].getIcon() == button[2][1].getIcon() && button[0][1].getIcon() != leeg ||
+                button[0][2].getIcon() == button[1][2].getIcon() && button[1][2].getIcon() == button[2][2].getIcon() && button[0][2].getIcon() != leeg ||
+                button[0][0].getIcon() == button[1][1].getIcon() && button[1][1].getIcon() == button[2][2].getIcon() && button[0][0].getIcon() != leeg ||
+                button[0][2].getIcon() == button[1][1].getIcon() && button[1][1].getIcon() == button[2][0].getIcon() && button[1][1].getIcon() != leeg) {
+            System.out.println("werkt");
+            if ((turn % 2) == 0)
+                JOptionPane.showMessageDialog(panel, "Rondjes heeft gewonnen");
+            else
+                JOptionPane.showMessageDialog(panel, "Kruisjes heeft gewonnen");
+        }
     }
 }
