@@ -156,7 +156,7 @@ public class tictactoe extends JFrame implements ActionListener {
                 button[0][2].getIcon() == button[1][2].getIcon() && button[1][2].getIcon() == button[2][2].getIcon() && button[0][2].getIcon() != leeg ||
                 button[0][0].getIcon() == button[1][1].getIcon() && button[1][1].getIcon() == button[2][2].getIcon() && button[0][0].getIcon() != leeg ||
                 button[0][2].getIcon() == button[1][1].getIcon() && button[1][1].getIcon() == button[2][0].getIcon() && button[1][1].getIcon() != leeg) {
-            System.out.println("werkt");
+            System.out.println("ERMAGHERRRD ITS WORKINGG");
             if ((turn % 2) == 0)
                 JOptionPane.showMessageDialog(panel, "Rondje heeft gewonnen");
             else
