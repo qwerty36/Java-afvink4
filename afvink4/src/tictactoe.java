@@ -1,22 +1,4 @@
-/**
- * @author Martijn van der Bruggen (Martijn.vanderBruggen@han.nl)
- * @version alpha - logica ontbreekt (c) 2006-2013 Hogeschool van Arnhem en
- * Nijmegen
- * <p/>
- * Tic Tac Toe 4 BioInformatics - Afvinkopdracht 4 Creation date: 9 December
- * 2006
- * MvdB: 4 December 2007 - added usage of arrays and iteration
- * MvdB: 20 November 2008 - added search for image path - rewrite of Message method
- * MvdB: 2 December 2009 - added additional header info panel MvdB: 24 November 2010 -
- * added additional comments
- * MvdB: 7 december 2012 - correctie van mijter.gif
- * naar mijter.jpg
- * MvdB: 19 september 2013 - aanpassing aan course 5a en extra opdrachten
- * <p/>
- * Onvolledige versie, implementatie van if-then-else en loops is vereist Neem
- * de bijbehorende images op in dezelfde directory als de gecompileerde classes,
- * dan zal het programma ze zelf vinden.
- */
+
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -45,11 +27,11 @@ public class tictactoe extends JFrame implements ActionListener {
         tictactoe frame = new tictactoe();
         setImages();
         frame.setTitle(TITEL);
-        frame.setSize(250, 250);
+        frame.setSize(350, 350);
         frame.createGUI();
         frame.setVisible(true);
         // Zet icon voor programma
-        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(imagePath + "icon.jpg"));
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("/home/richard/IdeaProjects/Java-afvink4/afvink4/output/production/Java-afvink4/icon.jpg"));
 
     }
 
@@ -58,13 +40,11 @@ public class tictactoe extends JFrame implements ActionListener {
      * images niet worden gevonden of als je andere images wilt gebruiken.
      */
     private static void setImages() {
-        imagePath = System.getProperty("java.class.path") + seperator + "afvink4" + seperator + "src";
-        imagePath = imagePath.substring(imagePath.indexOf(":") + 1);
-        System.out.println("Image pad: " + imagePath);
-        leeg = new ImageIcon(imagePath + "/home/richard/IdeaProjects/Java-afvink4/afvink4/output/production/afvink4/leeg.jpg");
-        kruisje = new ImageIcon(imagePath + "/home/richard/IdeaProjects/Java-afvink4/afvink4/output/production/afvink4/kruisje.jpg");
-        rondje = new ImageIcon(imagePath + "/home/richard/IdeaProjects/Java-afvink4/afvink4/output/production/afvink4/rondje.jpg");
-        vraagteken = new ImageIcon("/home/richard/IdeaProjects/Java-afvink4/afvink4/output/production/afvink4/question.jpg");
+        leeg = new ImageIcon("/home/richard/IdeaProjects/Java-afvink4/afvink4/output/production/Java-afvink4/leeg.jpg");
+        kruisje = new ImageIcon("/home/richard/IdeaProjects/Java-afvink4/afvink4/output/production/Java-afvink4/kruisje.jpg");
+        rondje = new ImageIcon("/home/richard/IdeaProjects/Java-afvink4/afvink4/output/production/Java-afvink4/rondje.jpg");
+        vraagteken = new ImageIcon("/home/richard/IdeaProjects/Java-afvink4/afvink4/output/production/Java-afvink4/question.jpg");
+
     }
 
     /**
@@ -94,7 +74,7 @@ public class tictactoe extends JFrame implements ActionListener {
 
         panel = new JPanel();
         panel.setLayout(new GridLayout(XAS, YAS, 5, 5));// GridLayout om in een matrix van 3 bij 3 de velden te plaatsen
-        panel.setPreferredSize(new Dimension(160, 160));
+        panel.setPreferredSize(new Dimension(200, 200));
         panel.setBackground(Color.BLACK);
         panelInfo = new JPanel();
         panelInfo.setMaximumSize(new Dimension(200, 100));
@@ -178,9 +158,9 @@ public class tictactoe extends JFrame implements ActionListener {
                 button[0][2].getIcon() == button[1][1].getIcon() && button[1][1].getIcon() == button[2][0].getIcon() && button[1][1].getIcon() != leeg) {
             System.out.println("werkt");
             if ((turn % 2) == 0)
-                JOptionPane.showMessageDialog(panel, "Rondjes heeft gewonnen");
+                JOptionPane.showMessageDialog(panel, "Rondje heeft gewonnen");
             else
-                JOptionPane.showMessageDialog(panel, "Kruisjes heeft gewonnen");
+                JOptionPane.showMessageDialog(panel, "Kruisje heeft gewonnen");
         }
     }
 }
